@@ -1,6 +1,6 @@
 # Nested Menu Bar
 
-<p>Nested Menu Bar is a horizontal menu ber for flutter.Based on <a href="https://github.com/bosskmk/pluto_menu_bar">PlutoMenuBar</a>.</p>
+<p>Nested Menu Bar is a horizontal menu bar for flutter.Based on <a href="https://github.com/bosskmk/pluto_menu_bar">PlutoMenuBar</a>.</p>
 
 ## Features
 
