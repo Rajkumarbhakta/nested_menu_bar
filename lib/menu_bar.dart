@@ -93,6 +93,27 @@ class _NestedMenuBarState extends State<NestedMenuBar> {
     _initSelectedTopMenu();
   }
 
+
+  /// Initializes the selected top menu.
+  ///
+  /// This method sets the `_selectedMenuKey` to the key of the menu item
+  /// specified by the `initialSelectedTopMenuIndex` property in the `itemStyle`.
+  /// It ensures that the selected menu index is within valid bounds and updates
+  /// the `_selectedMenuKey` accordingly.
+  ///
+  /// - If `enableSelectedTopMenu` is `false`, the method returns without making
+  ///   any changes.
+  /// - If `initialSelectedTopMenuIndex` is `null`, no menu is selected.
+  ///
+  /// The method adjusts the index to ensure it is within the range of available
+  /// menu items:
+  /// - If the index is less than 0, it is set to 0.
+  /// - If the index is greater than or equal to the number of menu items, it is
+  ///   set to the last menu item.
+  ///
+  /// This function is typically called during the `initState` lifecycle method
+  /// to initialize the selected menu when the widget is first created.
+
   void _initSelectedTopMenu() {
     if (!enabledSelectedTopMenu) return;
     if (widget.itemStyle.initialSelectedTopMenuIndex == null) return;
@@ -107,6 +128,16 @@ class _NestedMenuBarState extends State<NestedMenuBar> {
     _selectedMenuKey = widget.menus[index].key;
   }
 
+  /// Sets the selected menu key.
+  ///
+  /// This method updates the `_selectedMenuKey` to the provided [key] if
+  /// the `enableSelectedTopMenu` property is `true`. It triggers a state
+  /// update to reflect the change in the UI.
+  ///
+  /// - [key]: The `GlobalKey` of the menu to be selected. If `null`, no menu
+  ///   will be selected.
+  ///
+  /// This function has no effect if `enableSelectedTopMenu` is `false`.
   void _setSelectedMenuKey(GlobalKey<State<StatefulWidget>>? key) {
     if (!enabledSelectedTopMenu) return;
     setState(() {
@@ -201,22 +232,58 @@ class NestedMenuItemStyle {
     this.selectedTopMenuResolver,
   });
 
+  /// The color of the icon in the menu item.
+  ///
+  /// This property defines the default color of the icons used in the menu items.
+  /// It is applied to all icons unless overridden by specific styles or states.
   final Color iconColor;
 
+  /// The size of the icon in the menu item.
+  ///
+  /// This property defines the default size of the icons used in the menu items.
+  /// It is applied to all icons unless overridden by specific styles or states.
   final double iconSize;
 
+  /// The color of the "more" icon in the menu item.
+  ///
+  /// This property defines the default color of the "more" icons used in the menu items.
+  /// It is applied to all "more" icons unless overridden by specific styles or states.
   final Color moreIconColor;
 
+  /// The scale factor for the icons in the menu item.
+  ///
+  /// This property defines the scaling applied to the icons used in the menu items.
+  /// It allows for resizing the icons relative to their default size.
   final double iconScale;
 
+  /// The color of unselected menu items.
+  ///
+  /// This property defines the default color of menu items that are not selected.
+  /// It is used to visually differentiate unselected items from selected ones.
   final Color unselectedColor;
 
+  /// The color of activated menu items.
+  ///
+  /// This property defines the default color of menu items that are activated or selected.
+  /// It is used to highlight the currently active or selected menu item.
   final Color activatedColor;
 
+  /// The color of the indicator for the menu item.
+  ///
+  /// This property defines the color of the indicator used to highlight the menu item.
+  /// It is typically used to show focus or selection state.
   final Color indicatorColor;
 
+  /// The padding applied to the menu item.
+  ///
+  /// This property defines the amount of space around the content of the menu item.
+  /// It is used to control the spacing and layout of the menu item.
   final EdgeInsets padding;
 
+  /// The text style applied to the menu item.
+  ///
+  /// This property defines the default text style for the menu item labels.
+  /// It includes properties such as font size, color, and weight.
   final TextStyle textStyle;
 
   /// When the top menu is tapped, the selected style is set.
@@ -253,10 +320,26 @@ class NestedMenuItemStyle {
   final bool? Function(NestedMenuItem, bool?)? selectedTopMenuResolver;
 }
 
+/// Enum representing the mode in which the `NestedMenuBar` operates.
+///
+/// - [hover]: Submenus are opened when the user hovers over a menu item.
+/// - [tap]: Submenus are opened when the user taps on a menu item.
+/// enum NestedMenuBarMode {
+///  hover,
+///   tap;
+///
+///   /// Returns `true` if the mode is set to [hover].
+///   bool get isHover => this == NestedMenuBarMode.hover;
+///
+///   /// Returns `true` if the mode is set to [tap].
+///   bool get isTap => this == NestedMenuBarMode.tap;
+/// }
+
 enum NestedMenuBarMode {
   hover,
   tap;
 
   bool get isHover => this == NestedMenuBarMode.hover;
+
   bool get isTap => this == NestedMenuBarMode.tap;
 }

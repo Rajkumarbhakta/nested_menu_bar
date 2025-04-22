@@ -16,7 +16,7 @@ Get the package from pub.dev by adding the following to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  nested_menu_bar: ^1.0.0
+  nested_menu_bar: ^1.0.2
 ```
 
 ## Usage
